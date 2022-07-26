@@ -12,9 +12,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "prepare": "husky insall"
   },
   "dependencies": {
+    "husky": "^8.0.1",
     "next": "12.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
