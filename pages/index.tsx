@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from './page.d';
@@ -9,13 +8,17 @@ const Home: NextPageWithLayout = () => {
 
   return (
     <section className="flex flex-col items-center gap-y-5 mt-12 sm:mt-36">
-      <Image src="" alt="Google Logo" width={272} height={92} priority />
-      <p>
-        Google offered in:{' '}
-        <Link href="/" locale={locale === 'en' ? 'fr' : 'en'}>
-          <a className="underline text-blue-600"> Français</a>
-        </Link>
-      </p>
+      <Image
+        src="/Lansan.png"
+        alt="LanSan Tech"
+        width={250}
+        height={250}
+        priority
+      />
+      <h1 className="text-lg font-bold">Welcome To Lansan Technologies</h1>
+      <h6 className="text-sm font-semibold">
+        Where we Build Tomorrow's Technology Today
+      </h6>
     </section>
   );
 };
