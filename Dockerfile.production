@@ -19,6 +19,7 @@ COPY --from=deps /app/node_modules ./node_modules
 ARG NODE_ENV=production
 
 RUN echo ${NODE_ENV}
+RUN yarn add --dev typescript @types/react @types/node
 #Build the applic ation
 RUN NODE_ENV=${NODE_ENV} yarn build
 
