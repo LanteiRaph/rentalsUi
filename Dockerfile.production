@@ -1,46 +1,46 @@
+#Base IMage to be used as depenancey ony generator.
 FROM node:16-alpine as dep
-
+#Set enviroment mode
 ENV NODE_ENV =  production
-
 RUN apk add --no-cache libc6-compact
-
+#SEt the working directory
 WORKDIR /app
-
+#Copy dependacy for installation.
 COPY package.json yarn.lock ./
-
+#Install al dependancy
 RUN yarn install --frozen-lockfile
-
+#Create the bulder layer for production optimizaion
 FROM node:16-alpine as builder
-
+#Env mode
 ENV NODE_ENV =  production
-
+#set working directory
 WORKDIR /app
-
+#Copy all needed files 
 COPY next.config.js ./
 COPY package.json yarn.lock ./
 COPY --from=dep /app/node_modules ./node_modules
-
+#COpy app specific files
 COPY pages ./pahes
 COPY public ./public
 COPY styles ./styles
-
+#Build the application for developement.
 RUN yarn build 
-
+#Create the Runner lay, a small minimal layer for production.
 FROM node:16-alpine as runner
-
+# set the working direcroty
 WORKDIR /app
-
+#Env Mode
 ENV NODE_ENV = production
-
+#Add And change user to nextjs user.
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-
+#Copy all build file from next to the woking app directory for deployment
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
+#Change user
 USER nextjs
-
+#Start the server.
 CMD ["node", "server.js"]
 
 
