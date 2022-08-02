@@ -51,6 +51,5 @@ jobs:
           script: |
             docker login ghcr.io -u $GITHUB_USERNAME -p $GITHUB_TOKEN
             docker pull ghcr.io/lanteiraph/lansan/lansanapp:latest
-            docker stop lansanTech
             docker system prune -f
             docker run --name lansanTech -dit -p 3000:3000 ghcr.io/lanteiraph/lansan/lansanapp:latest
