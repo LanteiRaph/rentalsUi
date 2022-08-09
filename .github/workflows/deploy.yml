@@ -53,4 +53,4 @@ jobs:
             docker pull ghcr.io/lanteiRaph/lansan/rentalslansan:latest
             docker stop rentalslansan
             docker system prune -f
-            docker run --name lansanTech -dit -p 3000:3000 ghcr.io/lanteiRaph/lansan/rentalslansan:latest
+            docker run --name lansanTech -dit -p 3000:3000 ghcr.io/lanteiraph/lansan/rentalslansan:latest
