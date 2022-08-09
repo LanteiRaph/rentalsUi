@@ -5,8 +5,9 @@ services:
     image: docker-nextjs-dev
     build: .
     ports:
-      - 3000:3000
+      - 3001:3000
     volumes:
       - ./pages:/app/pages
       - ./public:/app/public
       - ./styles:/app/styles
+      - ./components:/app/components
