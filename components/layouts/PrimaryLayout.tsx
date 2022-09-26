@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Aside from '../navigation/aside/aside';
 import Footer from '../navigation/footer/Footer';
 import Header from '../navigation/header/Header';
 
@@ -14,13 +15,17 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
   return (
     <>
       <Head>
-        <title>NextJs Fullstack App Template</title>
+        <title>Lansan | MyCareTaker</title>
       </Head>
-      <div {...divProps} className={`min-h-screen flex flex-col ${justify}`}>
+      <div  className={`relative min-h-screen overflow-auto`}>
         <Header />
-        <main className="px-5">{children}</main>
-        <div className="m-auto" />
-        <Footer />
+        {/* <main classNameName="relative flex w-full h-screen font-sans text-gray-900 bg-white">
+          <Aside/>
+          <article classNameName='relative overflow-y-scroll flex-1'>
+          {children}
+          </article>
+        </main>
+        <Footer /> */}
       </div>
     </>
   );

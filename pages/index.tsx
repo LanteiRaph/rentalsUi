@@ -1,24 +1,69 @@
+import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from './page';
-
+//Login and page protections
+import { unstable_getServerSession } from 'next-auth/next';
+import { authOptions } from './api/auth/[...nextauth]';
+import { useSession } from 'next-auth/react';
+import { Timmer } from '../components/atoms/Timmer';
+//Icons
+import { GiHouseKeys } from 'react-icons/gi';
+//Page props
 const Home: NextPageWithLayout = () => {
+  const { data: session } = useSession();
+  console.log(session);
   return (
-    <section className="flex flex-col items-center gap-y-5 mt-12 sm:mt-36">
-      <Image
-        src="/Lansan.png"
-        alt="LanSan Tech"
-        width={250}
-        height={250}
-        priority
-      />
-      <h1 className="text-lg font-bold">Welcome To Lansan Technologies</h1>
-      <h6 className="text-sm font-semibold">
-        Where we Build Tomorrow's Technology Today
-      </h6>
+    <section className="m-2 p-4">
+      <div className="flex items-center justify-between border rounded-sm border-gray-50 p-6">
+        <h2 className="leading-relaxed font-bold text-2xl">
+          Welcome back <span className="text-base font-light"> David</span>
+        </h2>
+        <div className="hidden md:block">
+          <Timmer />
+        </div>
+      </div>
+      <div className="mt-2 flex md:flex-row flex-col gap-4 items-center justify-between border rounded-sm border-gray-50 p-6">
+        {[1, 2, 3,4].map((value) => {
+          return (
+            <div
+              className="w-60 flex flex-col justify-center p-4 border rounded-sm border-gray-50 "
+              key={value}
+            >
+              <h3 className="font-thin">Registered Houses</h3>
+              <div className="flex justify-between items-center">
+                <p className="font-bold text-2xl leading-relaxed">2000</p>
+                <GiHouseKeys className="w-5" />
+              </div>
+            </div>
+          );
+        })}
+        
+      </div>
     </section>
   );
 };
+//Get server side props and handle authentication.
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
+  if (session) {
+    return {
+      props: {
+        session: session,
+      },
+    };
+  }
+  return {
+    redirect: {
+      destination: 'api/auth/signin',
+      permanent: false,
+    },
+  };
+}
 
 export default Home;
 
