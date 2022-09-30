@@ -1,8 +1,10 @@
+import { ApolloProvider } from '@apollo/client';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import client from '../constants/apollo-client';
 import '../styles/globals.css';
-// import { AuthProvider } from '../state/auth/AuthContext';
-
+//Custome component for the page
 import { NextPageWithLayout } from './page.d';
 
 interface AppPropsWithLayout extends AppProps {
@@ -15,10 +17,12 @@ function MyApp({
 }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page);
-
+  //Return the page for the application.
   return getLayout(
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <ApolloProvider client={client}>
+          <Component {...pageProps} />
+      </ApolloProvider>
     </SessionProvider>
   );
 }

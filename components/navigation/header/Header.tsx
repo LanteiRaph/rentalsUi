@@ -1,8 +1,16 @@
+import { useSession, signOut } from "next-auth/react";
+import secureLocalStorage from 'react-secure-storage'
 export interface IBaseTemplate {
   user: {name:string, email:string , image:string}
 }
 
 const BaseTemplate = () => {
+  const logOut = async () => {
+    //clear te token from the storeage ie. logout user fom backend server.
+    secureLocalStorage.clear()
+    //log out the user from  nex js server. 
+    await signOut()
+  } 
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5  dark:bg-gray-900">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -70,12 +78,12 @@ const BaseTemplate = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <button
+                  onClick={logOut}
                   className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >
                   Sign out
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -147,6 +155,14 @@ const BaseTemplate = () => {
               >
                 Contact
               </a>
+            </li>
+            <li>
+              <button
+                onClick={logOut}
+                className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >
+                Sign Out
+              </button>
             </li>
           </ul>
         </div>

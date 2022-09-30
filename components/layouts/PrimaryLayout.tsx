@@ -19,6 +19,7 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
       </Head>
       <div  className={`relative min-h-screen overflow-auto`}>
         <Header />
+        {children}
         {/* <main classNameName="relative flex w-full h-screen font-sans text-gray-900 bg-white">
           <Aside/>
           <article classNameName='relative overflow-y-scroll flex-1'>

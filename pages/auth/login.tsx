@@ -1,6 +1,9 @@
 import Image from 'next/image';
+import { NextPageWithLayout } from '../page';
+import { signIn} from 'next-auth/react';
 
-const Login = () => {
+const Login:NextPageWithLayout = () => {
+  //const 
   return (
     <>
       <div className="flex justify-between min-h-screen font-sans">
@@ -38,6 +41,7 @@ const Login = () => {
               </span>
               <div className="flex flex-wrap gap-y-4 gap-x-6 justify-between items-center pt-10 whitespace-nowrap">
                 <button
+                  onClick={() => signIn('google', {callbackUrl:'http://localhost:3000'})}
                   type="button"
                   className=" w-full hover:bg-green/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium border border-gray-800 rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
                 >
@@ -207,3 +211,7 @@ const Login = () => {
 };
 
 export default Login;
+
+Login.getLayout = (page) => {
+  return <>{page}</>;
+};

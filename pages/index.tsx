@@ -9,6 +9,7 @@ import { useSession } from 'next-auth/react';
 import { Timmer } from '../components/atoms/Timmer';
 //Icons
 import { GiHouseKeys } from 'react-icons/gi';
+import { withSSRAuth } from '../hooks/withSSRAuth';
 //Page props
 const Home: NextPageWithLayout = () => {
   const { data: session } = useSession();
@@ -38,32 +39,18 @@ const Home: NextPageWithLayout = () => {
             </div>
           );
         })}
-        
       </div>
     </section>
   );
 };
 //Get server side props and handle authentication.
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await unstable_getServerSession(
-    context.req,
-    context.res,
-    authOptions
-  );
-  if (session) {
-    return {
-      props: {
-        session: session,
-      },
-    };
-  }
+export  const getServerSideProps = withSSRAuth( async () => {
   return {
-    redirect: {
-      destination: 'api/auth/signin',
-      permanent: false,
-    },
-  };
-}
+    props:{
+
+    }
+  }
+})
 
 export default Home;
 
