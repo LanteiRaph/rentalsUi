@@ -1,19 +1,24 @@
 import { useSession, signOut } from "next-auth/react";
+import { useState } from "react";
 import secureLocalStorage from 'react-secure-storage'
+import classNames from 'classnames'
 export interface IBaseTemplate {
   user: {name:string, email:string , image:string}
 }
 
 const BaseTemplate = () => {
+  //Activate the mobile menu
+  const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false)
   const logOut = async () => {
     //clear te token from the storeage ie. logout user fom backend server.
     secureLocalStorage.clear()
-    //log out the user from  nex js server. 
+    //log out the user from  next js server. 
     await signOut()
   } 
   return (
-    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5  dark:bg-gray-900">
+    <nav className="bg-white border-b border-gray-200 px-2 sm:px-4 py-2.5  dark:bg-gray-900">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
+        {/**Logo */}
         <a href="/" className="flex items-center">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
@@ -24,6 +29,7 @@ const BaseTemplate = () => {
             MyCareTaker
           </span>
         </a>
+        {/** */}
         <div className="flex items-center md:order-2">
           <button
             type="button"
@@ -40,6 +46,7 @@ const BaseTemplate = () => {
               alt="user photo"
             />
           </button>
+          {/**User dropdown */}
           <div
             className="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
             id="user-dropdown"
@@ -88,6 +95,7 @@ const BaseTemplate = () => {
             </ul>
           </div>
           <button
+          onClick={() => setMobileMenuActive((prev) => !prev)}
             data-collapse-toggle="mobile-menu-2"
             type="button"
             className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -110,9 +118,10 @@ const BaseTemplate = () => {
             </svg>
           </button>
         </div>
+        {/**Main Nav Bar */}
         <div
-          className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
-          id="mobile-menu-2"
+          className={classNames("justify-between items-center w-full md:flex md:w-auto md:order-1", {'block': mobileMenuActive, 'hidden': !mobileMenuActive })}
+          id="desktop-navbar"
         >
           <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>

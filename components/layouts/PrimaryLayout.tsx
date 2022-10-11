@@ -17,16 +17,15 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
       <Head>
         <title>Lansan | MyCareTaker</title>
       </Head>
-      <div  className={`relative min-h-screen overflow-auto`}>
+      <div  className={`relative min-h-screen overflow-auto`} {...divProps}>
         <Header />
-        {children}
-        {/* <main classNameName="relative flex w-full h-screen font-sans text-gray-900 bg-white">
+        <main className="relative w-full font-sans text-gray-900 bg-white  min-h-[90vh] grid grid-cols-12">
           <Aside/>
-          <article classNameName='relative overflow-y-scroll flex-1'>
+          <article className='relative overflow-y-scroll flex-1 col-span-12 lg:col-span-10 w-full justify-center items-center'>
           {children}
           </article>
         </main>
-        <Footer /> */}
+        {/* <Footer /> */}
       </div>
     </>
   );

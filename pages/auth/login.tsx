@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import { NextPageWithLayout } from '../page';
 import { signIn} from 'next-auth/react';
+//Icons
+import {RiLockPasswordFill} from 'react-icons/ri'
+import {AiOutlineMail} from 'react-icons/ai'
 
 const Login:NextPageWithLayout = () => {
   //const 
@@ -17,7 +20,7 @@ const Login:NextPageWithLayout = () => {
                 Control Bussiness
               </span>
               <p className="font-light leading-7 text-gray-500">
-                Dotra is the most comprehensive field service & asset managament
+                MyCareTaker is the most comprehensive field service & rental managament
                 platform with combining flexibility.
               </p>
             </div>
@@ -25,19 +28,12 @@ const Login:NextPageWithLayout = () => {
         </div>
         <div className="flex-1 mx-auto max-w-2xl">
           <div className="flex flex-col px-8 pt-10 lg:px-14 xl:px-24">
-            <Image
-              className="self-center w-32 md:self-end"
-              src={'/icons/logo.svg'}
-              alt={''}
-              width={24}
-              height={24}
-            />
             <div className="pt-20 pb-6">
               <h1 className="text-3xl font-bold tracking-wide leading-loose whitespace-nowrap">
                 Hi, Welcome back!
               </h1>
               <span className="font-light text-gray-500">
-                Login now to manage your job made easy.
+                Login now to access your account.
               </span>
               <div className="flex flex-wrap gap-y-4 gap-x-6 justify-between items-center pt-10 whitespace-nowrap">
                 <button
@@ -101,50 +97,30 @@ const Login:NextPageWithLayout = () => {
                   </label>
                   <div className="relative">
                     <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                      <svg
-                        aria-hidden="true"
-                        className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                      </svg>
+                      <AiOutlineMail   className="w-5 h-5 text-gray-500 dark:text-gray-400"/>
                     </div>
                     <input
                       type="text"
                       id="email-address-icon"
                       className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 "
-                      placeholder="name@flowbite.com"
                     />
                   </div>
                 </div>
                 <div className="pt-6">
                   <label
-                    htmlFor="email-address-icon"
+                    htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
-                    Your Email
+                    Your Password
                   </label>
                   <div className="relative">
                     <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                      <svg
-                        aria-hidden="true"
-                        className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                      </svg>
+                      <RiLockPasswordFill className="w-5 h-5 text-gray-500 dark:text-gray-400"/>
                     </div>
                     <input
-                      type="text"
-                      id="email-address-icon"
+                      type="password"
+                      id="passowrd"
                       className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 "
-                      placeholder="name@flowbite.com"
                     />
                   </div>
                 </div>
@@ -189,7 +165,7 @@ const Login:NextPageWithLayout = () => {
                 </div>
                 <div className="flex flex-wrap gap-y-2 justify-between items-center pt-14 text-center whitespace-nowrap">
                   <span className="flex-1 text-gray-500">
-                    © 2021 Dotra. All rights reserved.
+                    © 2021 Lansan Tech. All rights reserved.
                   </span>
                   <span className="flex flex-1 justify-center items-center space-x-1">
                     <a href="#" className="text-gray-500 hover:text-gray-600">
