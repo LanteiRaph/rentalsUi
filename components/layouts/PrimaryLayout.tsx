@@ -1,3 +1,4 @@
+import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
 import Aside from '../navigation/aside/aside';
 import Footer from '../navigation/footer/Footer';
@@ -17,7 +18,7 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
       <Head>
         <title>Lansan | MyCareTaker</title>
       </Head>
-      <div  className={`relative min-h-screen overflow-auto`} {...divProps}>
+      <div  className={`relative min-h-screen overflow-auto bg-gradient-to-br from-transparent to-blue-50`} {...divProps}>
         <Header />
         <main className="relative w-full font-sans text-gray-900 bg-white  min-h-[90vh] grid grid-cols-12">
           <Aside/>

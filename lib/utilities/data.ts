@@ -28,7 +28,8 @@ export const navLinks:Link[] = [
         list:[
             {name:'Poster', link:'/apps/poster', iconName:GiTargetPoster},
             {name:'Register', link:'/apps/register', iconName:GiArchiveRegister},
-            {name:'Statement', link: '/apps/statements', iconName:AiOutlineProfile}
+            {name:'Statement', link: '/apps/statements', iconName:AiOutlineProfile},
+            {name: 'Account Recon', link: '/apps/account-recon', iconName: AiFillAppstore}
         ],
         iconName: GiArchiveRegister,
         dis:'translate-x-16'
@@ -46,9 +47,19 @@ export const navLinks:Link[] = [
         
     },
     {
+        name:'Documents',
+        list:[
+            {name:'Leases', link:'/documents/lease', iconName:SiHomeassistantcommunitystore },
+            {name:'', link:'/statistics', iconName:MdSpaceDashboard}
+        ],
+        iconName: MdSpaceDashboard,
+        dis: 'translate-x-0'
+    },
+    {
         name:'Authentication',
         list:[
-            {name:'Login', link:'/api/auth/signin', iconName:HiOutlineLogin}
+            {name:'Login', link:'/api/auth/signin', iconName:HiOutlineLogin},
+            {name: 'Manage Users', link: '/app/auth/manage-users' , iconName: HiOutlineLogin}
         ],
         iconName:HiOutlineLogin,
         dis:'translate-x-48'

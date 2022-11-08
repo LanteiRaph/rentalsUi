@@ -6,6 +6,7 @@ import client from '../constants/apollo-client';
 import '../styles/globals.css';
 //Custome component for the page
 import { NextPageWithLayout } from './page.d';
+import Guard from '../components/Guard'
 
 interface AppPropsWithLayout extends AppProps {
   Component: NextPageWithLayout;
@@ -21,7 +22,9 @@ function MyApp({
   return getLayout(
     <SessionProvider session={session}>
       <ApolloProvider client={client}>
-          <Component {...pageProps} />
+        <Guard>         
+           <Component {...pageProps} />
+        </Guard>
       </ApolloProvider>
     </SessionProvider>
   );

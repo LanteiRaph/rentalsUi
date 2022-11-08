@@ -19,21 +19,20 @@ const NavLinks = () => {
     <>
         <div className="flex flex-col justify-between w-full">
           <div>
-            {navLinks.map((link) => {
+            {navLinks.map((link, i) => {
               return (
-                <div key={'x'}>
+                <div key={i}>
                   <a
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      console.log(isOpen);
                       //Set the open to inverse of it self
                       setIsOpen((prev) => {
                         if (prev == link.name) return undefined;
                         return link.name;
                       });
                     }}
-                    className={`flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary
+                    className={`flex items-center p-2 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary
                                      ${
                                        isActive || isOpen == link.name
                                          ? `bg-primary-100 dark:bg-primary`

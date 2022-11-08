@@ -1,11 +1,16 @@
 import create from 'zustand'
 
+//TODO: think of a better wau to handle this (User type)
+interface User {name:string, email:string, image:string}
+
 //The type for the application: source of truth.
 interface AppsState{
     isSettingsPanelOpen:boolean,
     setIsSettingsPanelOpen: (value:boolean) => void
     isModalOpen:boolean,
     setIsModalOpen: (value:boolean) => void
+    currentUser: User | null
+    setCurrentuser: (user:User )=> void
 }
 
 
@@ -22,6 +27,11 @@ const useApp = create<AppsState>((set) =>  ({
     setIsSettingsPanelOpen :(value:boolean) => set((state) => ({
         isSettingsPanelOpen:value
     })),
+    currentUser: null,
+    setCurrentuser: (user) => set(() => ({
+        currentUser:user
+    }))
+
 }))
 
 export {useApp}

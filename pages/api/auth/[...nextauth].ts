@@ -41,9 +41,6 @@ export const authOptions: NextAuthOptions = {
   theme: {
     colorScheme: 'auto',
   },
-  session:{
-
-  },
   callbacks: {
     async jwt({ token, user }) {
       //Update the token to the user token:server side token

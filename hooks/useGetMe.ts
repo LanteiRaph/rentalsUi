@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-
+import client from '../constants/apollo-client'
 const GET_ME = gql`
   query Me {
     me {
@@ -12,8 +12,7 @@ const useGetMe = () => {
   //Make request to the backend server to verify the current user
   //const verified = fetch(`${process.env.API_URL}/auth/verifyMe`)
   //return the retruned user
-  console.log('jhey')
-  return useQuery(GET_ME, { errorPolicy: "all" });
+  return useQuery(GET_ME, { errorPolicy: "all" ,client});
 };
 
-export default useGetMe;
+export {useGetMe};

@@ -5,5 +5,5 @@ export const useAuth = () =>  {
     const { data: session , status} = useSession();
     //Get the local user: backend user. Next js user has to be for the opration to be complite
     //Check next js server user. 
-    
+    return {session, status}
 }

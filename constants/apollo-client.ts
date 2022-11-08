@@ -9,6 +9,7 @@ import { onError } from '@apollo/client/link/error';
 import authenticatedVar from './authenticated';
 import secureLocalStorage from 'react-secure-storage';
 import { API_URL } from './urls';
+
 //Compile the http link that is to be used to access the grapgql backend.
 const httpLink = new HttpLink({
   uri: `${API_URL}/`,
@@ -16,9 +17,7 @@ const httpLink = new HttpLink({
 });
 //Compile the log out error for authenticate user.
 const logoutLink = onError(({ graphQLErrors }) => {
-  console.log(graphQLErrors)
   if (graphQLErrors) {
-    console.log(graphQLErrors)
     for (let err of graphQLErrors) {
       switch (err.message) {
         // Apollo Server sets code to UNAUTHENTICATED
@@ -33,8 +32,10 @@ const logoutLink = onError(({ graphQLErrors }) => {
 });
 //Handle the auth to provide the token to the backend application.
 const authMiddleware = new ApolloLink((operation, forward) => {
-  //Exctract the token from the 
+console.log('ehy')
+  //Exctract the token from the
   const token = secureLocalStorage.getItem('token');
+  //console.log(token)
   //Check if the token exsits if so append to the headers.
   if (token) {
     // add the authorization to the headers
@@ -51,12 +52,15 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 //
 //Handle error for the server.
 const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.forEach(({ message, locations, path }) =>
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
-    );
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path }) => {
+      if (message !== 'Not Authorised!') {
+        console.log(
+          `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+        );
+      }
+    });
+  }
 
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });

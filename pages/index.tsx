@@ -1,19 +1,13 @@
-import { GetServerSidePropsContext } from 'next';
-import Image from 'next/image';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { NextPageWithLayout } from './page';
 //Login and page protections
-import { unstable_getServerSession } from 'next-auth/next';
-import { authOptions } from './api/auth/[...nextauth]';
-import { useSession } from 'next-auth/react';
 import { Timmer } from '../components/atoms/Timmer';
 //Icons
 import { GiHouseKeys } from 'react-icons/gi';
 import { withSSRAuth } from '../hooks/withSSRAuth';
 //Page props
 const Home: NextPageWithLayout = () => {
-  const { data: session } = useSession();
-  console.log(session);
+    //Fetch the current user from the database
   return (
     <section className="m-2 p-4">
       <div className="flex items-center justify-between border rounded-sm border-gray-50 p-6">
