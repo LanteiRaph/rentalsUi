@@ -13,7 +13,7 @@ interface GuardProps {
   excludedRoutes?: string[];
 }
 
-const Guard = ({ children, excludedRoutes }: GuardProps) => {
+const Guard = ({children}: GuardProps) => {
   //Extract the next js user
   const {data: token , status} = useSession()
   //Once a user has been looged in save the token for backend access.

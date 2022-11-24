@@ -66,7 +66,9 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 //Create the client to access the connections to the graphql server.
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    addTypename:false
+  }),
   link: from([errorLink, logoutLink, authMiddleware, httpLink]),
 });
 
